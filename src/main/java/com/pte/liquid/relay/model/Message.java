@@ -22,14 +22,15 @@ import java.util.UUID;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlSchemaType;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-
+import com.pte.liquid.xml.date.DateAdapter;
 
 @XmlRootElement(name="Message")
 public class Message {
-	
 	
 	public Message(){
 		setId(UUID.randomUUID().toString());
@@ -57,7 +58,12 @@ public class Message {
 	
 	@Expose
 	@SerializedName("SnapshotTime")
-	private Date snapshotTime;		
+	private Date snapshotTime;
+	
+	@Expose
+	@SerializedName("SnapshotTimeMillis")
+	private long snapshotTimeMillis;
+	
 	
 	@Expose
 	@SerializedName("Header")
@@ -69,7 +75,7 @@ public class Message {
 		
 	@Expose
 	@SerializedName("Part")
-	private List<MessagePart> parts;	
+	private List<MessagePart> parts;		
 	
 
 	@XmlElement(name="Location")
@@ -91,6 +97,8 @@ public class Message {
 	}
 
 	@XmlElement(name="SnapshotTime")
+	@XmlSchemaType(name="date")
+	@XmlJavaTypeAdapter(DateAdapter.class)
 	public Date getSnapshotTime() {
 		return snapshotTime;
 	}
@@ -288,6 +296,18 @@ public class Message {
 	public void setOrder(int order) {
 		this.order = order;
 	}
+
+	
+	@XmlElement(name="SnapshotTimeMillis")
+	public long getSnapshotTimeMillis() {
+		return snapshotTimeMillis;
+	}
+
+	public void setSnapshotTimeMillis(long snapshotTimeMillis) {
+		this.snapshotTimeMillis = snapshotTimeMillis;
+	}
+	
+	
 	
 	
 	
