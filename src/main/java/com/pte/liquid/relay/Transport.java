@@ -13,6 +13,8 @@
 //limitations under the License.
 package com.pte.liquid.relay;
 
+import java.util.Properties;
+
 import com.pte.liquid.relay.exception.RelayException;
 import com.pte.liquid.relay.model.Message;
 
@@ -20,5 +22,6 @@ public interface Transport {
 
 	public void send(Message msg) throws RelayException;
 	public void setMarshaller(Marshaller marshaller);
+	public void setProperties(Properties properties);
 	
 }

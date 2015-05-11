@@ -6,9 +6,9 @@
   <name>RelayInterfaces</name>
 
 	<scm>
-		<connection>scm:svn:https://liquid-relay-interfaces.googlecode.com/svn/trunk/</connection>
-		<developerConnection>scm:svn:https://liquid-relay-interfaces.googlecode.com/svn/trunk/</developerConnection>
-		<url>https://liquid-relay-interfaces.googlecode.com/svn/trunk/</url>
+		<connection>scm:git:https://github.com/rjptegelaar/liquid-relay-interfaces.git</connection>
+		<developerConnection>scm:git:https://github.com/rjptegelaar/liquid-relay-interfaces.git</developerConnection>
+		<url>https://github.com/rjptegelaar/liquid-relay-interfaces.git</url>
 	</scm>
 	<build>
 		<plugins>

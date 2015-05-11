@@ -18,7 +18,7 @@ public class Constants {
 	public static final String LOCATION_SEPERATOR = "||";
 	public static final String CORRELATION_ID_PROPERTY_NAME = "liquid_correlation_id";
 	public static final String EXCEPTION_PROPERTY_NAME = "liquid_exception";
-	public static final  String PARENT_ID_PROPERTY_NAME = "liquid_parent_id";
+	public static final String PARENT_ID_PROPERTY_NAME = "liquid_parent_id";
 	public static final String ORDER_PROPERTY_NAME = "liquid_message_order";
 	public static final String ESB_TYPE_PROPERTY_NAME = "liquid_esb_type";
 	
