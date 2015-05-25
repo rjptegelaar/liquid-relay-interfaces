@@ -25,8 +25,7 @@
   	                <configuration>  	                
   	                    <autoVersionSubmodules>true</autoVersionSubmodules>  	                    
   	                    <remoteTagging>true</remoteTagging>
-  	                    <resume>false</resume>  	                    
-  	                    <tagBase>https://liquid-relay-interfaces.googlecode.com/svn/tags/</tagBase>  	                    
+  	                    <resume>false</resume>  	                                        
  	                </configuration>
 			</plugin>
 			<plugin>
