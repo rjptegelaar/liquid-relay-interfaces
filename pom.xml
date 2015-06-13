@@ -2,14 +2,14 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.pte.liquid.relay</groupId>
 	<artifactId>RelayInterfaces</artifactId>
-	<version>0.1.7</version>
+	<version>0.1.8-SNAPSHOT</version>
 	<name>RelayInterfaces</name>
 
 	<scm>
 		<connection>scm:git:https://github.com/rjptegelaar/liquid-relay-interfaces.git</connection>
 		<developerConnection>scm:git:git@github.com:rjptegelaar/liquid-relay-interfaces.git</developerConnection>
 		<url>https://github.com/rjptegelaar/liquid-relay-interfaces.git</url>
-    <tag>RelayInterfaces-0.1.7</tag>
+    <tag>HEAD</tag>
   </scm>
 	<build>
 		<plugins>
