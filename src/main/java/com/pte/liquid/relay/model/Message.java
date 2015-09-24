@@ -15,10 +15,18 @@
 package com.pte.liquid.relay.model;
 
 import java.util.ArrayList;
+
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -29,6 +37,8 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import com.pte.liquid.xml.date.DateAdapter;
 
+@Entity
+@Table(name="etmmessages")
 @XmlRootElement(name="Message")
 public class Message {
 	
@@ -56,6 +66,7 @@ public class Message {
 	@SerializedName("CorrelationID")
 	private String correlationID;
 	
+	
 	@Expose
 	@SerializedName("SnapshotTime")
 	private Date snapshotTime;
@@ -77,7 +88,7 @@ public class Message {
 	@SerializedName("Part")
 	private List<MessagePart> parts;		
 	
-
+	@Column(name = "location")
 	@XmlElement(name="Location")
 	public String getLocation() {
 		return location;
@@ -87,6 +98,8 @@ public class Message {
 		this.location = location;
 	}
 
+	@Id
+	@Column(name = "messageid")
 	@XmlElement(name="ID")
 	public String getId() {
 		return id;
@@ -96,6 +109,8 @@ public class Message {
 		this.id = id;
 	}
 
+	@Column(name = "snapshottime")
+    @Temporal(TemporalType.TIMESTAMP)
 	@XmlElement(name="SnapshotTime")
 	@XmlSchemaType(name="date")
 	@XmlJavaTypeAdapter(DateAdapter.class)
@@ -107,12 +122,14 @@ public class Message {
 		this.snapshotTime = snapshotTime;
 	}
 
+	@Transient
 	@XmlElementWrapper(name="Headers")
 	@XmlElement(name="Header")
 	public List<MessageHeader> getHeaders() {
 		return headers;
 	}
 	
+	@Transient
 	@XmlElement(name="Part")
 	public List<MessagePart> getParts() {
 		return parts;
@@ -179,10 +196,12 @@ public class Message {
 		return false;		
 	}
 	
+	@Transient
 	public String getHeaderValue(String key){
 		return getHeaderValue(key, headers);
 	}
 	
+	@Transient
 	public String getSystemHeaderValue(String key){
 		return getHeaderValue(key, systemHeaders);
 	}
@@ -200,10 +219,12 @@ public class Message {
 
 	}	
 	
+	@Transient
 	public MessageHeader getHeader(String key){
 		return getHeader(key, headers);
 	}
 
+	@Transient
 	public MessageHeader getSystemHeader(String key){
 		return getHeader(key, systemHeaders);
 	}
@@ -242,6 +263,7 @@ public class Message {
 		return null;		
 	}
 
+	@Column(name = "correlationid")
 	@XmlElement(name="CorrelationID")
 	public String getCorrelationID() {
 		return correlationID;
@@ -251,6 +273,7 @@ public class Message {
 		this.correlationID = correlationID;
 	}
 	
+	@Transient
 	public int getNumberOfParts(){
 		if(parts!=null){
 			return parts.size();
@@ -258,7 +281,8 @@ public class Message {
 			return 0;
 		}
 	}		
-	
+		
+	@Transient
 	@XmlElementWrapper(name="SystemHeaders")
 	@XmlElement(name="SystemHeader")
 	public List<MessageHeader> getSystemHeaders() {
@@ -278,6 +302,9 @@ public class Message {
 				+ ", parts=" + parts + "]";
 	}
 	
+	
+	
+	@Column(name = "parentid")
 	@XmlElement(name="ParentID")
 	public String getParentID() {
 		return parentID;
@@ -287,7 +314,7 @@ public class Message {
 		this.parentID = parentID;
 	}
 
-
+	@Column(name = "messageorder")
 	@XmlElement(name="Order")
 	public int getOrder() {
 		return order;
@@ -298,6 +325,8 @@ public class Message {
 	}
 
 	
+	
+	@Column(name = "snapshottimemillis")
 	@XmlElement(name="SnapshotTimeMillis")
 	public long getSnapshotTimeMillis() {
 		return snapshotTimeMillis;
