@@ -13,14 +13,23 @@
 //limitations under the License.
 package com.pte.liquid.relay.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAttribute;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-
+@Entity
+@Table(name="etmheaders")
 public class MessageHeader {
 
+	
+	
 	public MessageHeader(){
 		
 	}
@@ -30,10 +39,15 @@ public class MessageHeader {
 		this.messageHeaderValue = messageHeaderValue;
 	}		
 	
+	private long id;
+	private String messageid;
+	
+	@Column(name = "key")
 	@Expose
 	@SerializedName("key")
 	private String messageHeaderKey;
 	
+	@Column(name = "value")
 	@Expose
 	@SerializedName("value")
 	private String messageHeaderValue;
@@ -54,6 +68,28 @@ public class MessageHeader {
 
 	public void setMessageHeaderValue(String messageHeaderValue) {
 		this.messageHeaderValue = messageHeaderValue;
+	}
+
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name = "id")
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+		
+	@Column(name = "messageid")
+	public String getMessageid() {
+		return messageid;
+	}
+
+	public void setMessageid(String messageid) {
+		this.messageid = messageid;
 	}	
+	
+	
 	
 }

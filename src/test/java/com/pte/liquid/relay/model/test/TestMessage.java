@@ -49,8 +49,7 @@ public class TestMessage {
 		message.setHeader("", "test");
 		message.setHeader(null, "test");
 		message.setHeader("hallo", null);
-		message.setSystemHeader("Test", "Lalalla");
-		
+
 		message.createPart(null, null);
 		message.createPart(null, "hallo");
 		message.createPart("test", null);

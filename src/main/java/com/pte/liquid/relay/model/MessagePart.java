@@ -14,14 +14,27 @@
 //limitations under the License.
 package com.pte.liquid.relay.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+@Entity
+@Table(name="etmparts")
 public class MessagePart {
 
+	
+	private long id;	
+	private String messageid;
+	
+	
 	@Expose
 	@SerializedName("label")
 	private String messagePartLabel;
@@ -45,7 +58,7 @@ public class MessagePart {
 
 	
 
-
+	@Column(name = "label")
 	@XmlAttribute(name="label", required=true)
 	public String getMessagePartLabel() {
 		return messagePartLabel;
@@ -55,6 +68,7 @@ public class MessagePart {
 		this.messagePartLabel = messagePartLabel;
 	}
 
+	@Column(name = "content")
 	@XmlElement(name="Content")
 	public String getMessagePartContent() {
 		return messagePartContent;
@@ -64,6 +78,7 @@ public class MessagePart {
 		this.messagePartContent = messagePartContent;
 	}
 
+	@Column(name = "index")
 	@XmlAttribute(name="index", required=true)
 	public int getMessagePartIndex() {
 		return messagePartIndex;
@@ -71,6 +86,26 @@ public class MessagePart {
 
 	public void setMessagePartIndex(int messagePartIndex) {
 		this.messagePartIndex = messagePartIndex;
+	}
+
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name = "id")
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	@Column(name = "messageid")
+	public String getMessageid() {
+		return messageid;
+	}
+
+	public void setMessageid(String messageid) {
+		this.messageid = messageid;
 	}
 	
 	

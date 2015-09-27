@@ -15,7 +15,6 @@
 package com.pte.liquid.relay.model;
 
 import java.util.ArrayList;
-
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -23,6 +22,7 @@ import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -79,10 +79,6 @@ public class Message {
 	@Expose
 	@SerializedName("Header")
 	private List<MessageHeader> headers = new ArrayList<MessageHeader>();
-	
-	@Expose
-	@SerializedName("SystemHeader")
-	private List<MessageHeader> systemHeaders = new ArrayList<MessageHeader>();
 		
 	@Expose
 	@SerializedName("Part")
@@ -122,14 +118,14 @@ public class Message {
 		this.snapshotTime = snapshotTime;
 	}
 
-	@Transient
+	@OneToMany(mappedBy="messageid")
 	@XmlElementWrapper(name="Headers")
 	@XmlElement(name="Header")
 	public List<MessageHeader> getHeaders() {
 		return headers;
 	}
 	
-	@Transient
+	@OneToMany(mappedBy="messageid")
 	@XmlElement(name="Part")
 	public List<MessagePart> getParts() {
 		return parts;
@@ -149,6 +145,7 @@ public class Message {
 		if(parts==null){
 			parts = new ArrayList<MessagePart>();
 		}		
+		part.setMessageid(id);
 		parts.add(part);
 	}
 	
@@ -156,9 +153,6 @@ public class Message {
 		this.setHeader(key, value, headers);
 	}
 	
-	public void setSystemHeader(String key, String value){
-		this.setHeader(key, value, systemHeaders);
-	}
 	
 	private void setHeader(String key, String value, List<MessageHeader> list){
 		if(key!=null && !"".equals(key)){				
@@ -166,9 +160,11 @@ public class Message {
 			if(containsHeader(key)==true){
 				MessageHeader newHeader = removeHeader(key);
 				newHeader.setMessageHeaderValue(value);
+				newHeader.setMessageid(id);
 				list.add(newHeader);
 			}else{
 				MessageHeader newHeader = new MessageHeader(key, value);
+				newHeader.setMessageid(id);
 				list.add(newHeader);
 			}
 		}
@@ -180,9 +176,6 @@ public class Message {
 		return containsHeader(key, headers);
 	}
 	
-	public boolean containsSystemHeader(String key){
-		return containsHeader(key, systemHeaders);
-	}
 	
 	private boolean containsHeader(String key, List<MessageHeader> list){
 		if(list==null){
@@ -201,10 +194,6 @@ public class Message {
 		return getHeaderValue(key, headers);
 	}
 	
-	@Transient
-	public String getSystemHeaderValue(String key){
-		return getHeaderValue(key, systemHeaders);
-	}
 	
 	private String getHeaderValue(String key, List<MessageHeader> list){		
 		if(list==null){
@@ -224,10 +213,6 @@ public class Message {
 		return getHeader(key, headers);
 	}
 
-	@Transient
-	public MessageHeader getSystemHeader(String key){
-		return getHeader(key, systemHeaders);
-	}
 	
 	private MessageHeader getHeader(String key, List<MessageHeader> list){
 		if(list==null){
@@ -244,10 +229,6 @@ public class Message {
 	public MessageHeader removeHeader(String key){
 		return removeHeader(key, headers);
 	}
-	
-	public MessageHeader removeSystemHeader(String key){
-		return removeHeader(key, systemHeaders);
-	}	
 	
 	private MessageHeader removeHeader(String key, List<MessageHeader> list){
 		if(list==null){
@@ -280,30 +261,17 @@ public class Message {
 		}else{
 			return 0;
 		}
-	}		
-		
-	@Transient
-	@XmlElementWrapper(name="SystemHeaders")
-	@XmlElement(name="SystemHeader")
-	public List<MessageHeader> getSystemHeaders() {
-		return systemHeaders;
-	}
-
-	public void setSystemHeaders(List<MessageHeader> systemHeaders) {
-		this.systemHeaders = systemHeaders;
-	}
-
+	}			
+	
 	@Override
 	public String toString() {
 		return "Message [location=" + location + ", id=" + id + ", parentID="
 				+ parentID + ", order=" + order + ", correlationID="
 				+ correlationID + ", snapshotTime=" + snapshotTime
-				+ ", headers=" + headers + ", systemHeaders=" + systemHeaders
-				+ ", parts=" + parts + "]";
+				+ ", snapshotTimeMillis=" + snapshotTimeMillis + ", headers="
+				+ headers + ", parts=" + parts + "]";
 	}
-	
-	
-	
+
 	@Column(name = "parentid")
 	@XmlElement(name="ParentID")
 	public String getParentID() {
