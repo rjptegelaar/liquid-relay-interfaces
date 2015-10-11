@@ -42,6 +42,10 @@ public class MessageHeader {
 	}		
 	
 	private long id;
+	
+	@Column(name = "messageid")
+	@Expose
+	@SerializedName("messageid")
 	private String messageid;
 	
 	@Column(name = "key")
@@ -75,7 +79,6 @@ public class MessageHeader {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name = "id")
-	@XmlAttribute(name="ID", required=true)
 	public long getId() {
 		return id;
 	}
@@ -85,7 +88,7 @@ public class MessageHeader {
 	}
 		
 	@Column(name = "messageid")
-	@XmlAttribute(name="MessageID", required=true)
+	@XmlAttribute(name="messageid", required=true)
 	public String getMessageid() {
 		return messageid;
 	}
