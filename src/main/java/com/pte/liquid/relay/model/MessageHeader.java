@@ -21,6 +21,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -31,8 +32,8 @@ public class MessageHeader {
 
 	
 	
-	public MessageHeader(String messageid){
-		this.messageid = messageid;
+	public MessageHeader(){
+
 	}
 		
 	public MessageHeader(String messageHeaderKey,String messageHeaderValue, String messageid) {
@@ -40,7 +41,6 @@ public class MessageHeader {
 		this.messageHeaderValue = messageHeaderValue;
 		this.messageid = messageid;
 	}		
-	
 	private long id;
 	
 	@Column(name = "messageid")
@@ -79,6 +79,7 @@ public class MessageHeader {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name = "id")
+	@XmlTransient
 	public long getId() {
 		return id;
 	}

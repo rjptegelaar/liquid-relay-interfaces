@@ -22,6 +22,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -51,8 +52,7 @@ public class MessagePart {
 	@SerializedName("index")
 	private int messagePartIndex;
 	
-	public MessagePart(String messageid){
-		this.messageid=messageid;
+	public MessagePart(){
 	}
 	
 	public MessagePart(String messagePartLabel,String messagePartContent,String messageid) {
@@ -96,6 +96,7 @@ public class MessagePart {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name = "id")
+	@XmlTransient
 	public long getId() {
 		return id;
 	}
