@@ -47,13 +47,14 @@ public class MessagePart {
 	@SerializedName("index")
 	private int messagePartIndex;
 	
-	public MessagePart(){
-		
+	public MessagePart(String messageid){
+		this.messageid=messageid;
 	}
 	
-	public MessagePart(String messagePartLabel,String messagePartContent) {
+	public MessagePart(String messagePartLabel,String messagePartContent,String messageid) {
 		this.messagePartLabel = messagePartLabel;
 		this.messagePartContent = messagePartContent;
+		this.messageid=messageid;
 	}
 
 	
@@ -79,7 +80,7 @@ public class MessagePart {
 	}
 
 	@Column(name = "index")
-	@XmlAttribute(name="index", required=true)
+	@XmlAttribute(name="Index", required=true)
 	public int getMessagePartIndex() {
 		return messagePartIndex;
 	}
@@ -91,6 +92,7 @@ public class MessagePart {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name = "id")
+	@XmlAttribute(name="ID", required=true)
 	public long getId() {
 		return id;
 	}
@@ -100,6 +102,7 @@ public class MessagePart {
 	}
 
 	@Column(name = "messageid")
+	@XmlAttribute(name="MessageID", required=true)
 	public String getMessageid() {
 		return messageid;
 	}

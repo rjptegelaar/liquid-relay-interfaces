@@ -140,12 +140,11 @@ public class Message {
 	}	
 	
 	public void createPart(String label, String content){
-		MessagePart part = new MessagePart(label, content);
+		MessagePart part = new MessagePart(label, content, this.id);
 		part.setMessagePartIndex(getNumberOfParts());
 		if(parts==null){
 			parts = new ArrayList<MessagePart>();
 		}		
-		part.setMessageid(id);
 		parts.add(part);
 	}
 	
@@ -160,11 +159,10 @@ public class Message {
 			if(containsHeader(key)==true){
 				MessageHeader newHeader = removeHeader(key);
 				newHeader.setMessageHeaderValue(value);
-				newHeader.setMessageid(id);
+				newHeader.setMessageid(this.id);
 				list.add(newHeader);
 			}else{
-				MessageHeader newHeader = new MessageHeader(key, value);
-				newHeader.setMessageid(id);
+				MessageHeader newHeader = new MessageHeader(key, value, this.id);
 				list.add(newHeader);
 			}
 		}
