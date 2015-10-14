@@ -10,7 +10,7 @@ import com.google.gson.annotations.SerializedName;
 public class Messages {
 
 	@Expose
-	@SerializedName("Messages")	
+	@SerializedName("Messages")
 	private List<Message> msgs;
 	
 	public Messages(){

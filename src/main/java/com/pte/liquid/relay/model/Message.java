@@ -22,6 +22,7 @@ import java.util.UUID;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -136,14 +137,14 @@ public class Message {
 		this.snapshotTime = snapshotTime;
 	}
 
-	@OneToMany(mappedBy="messageid",cascade = {CascadeType.ALL})
+	@OneToMany(mappedBy="messageid",cascade = {CascadeType.ALL}, fetch=FetchType.LAZY)
 	@XmlElementWrapper(name="Headers")
 	@XmlElement(name="Header")
 	public List<MessageHeader> getHeaders() {
 		return headers;
 	}
 	
-	@OneToMany(mappedBy="messageid",cascade = {CascadeType.ALL})
+	@OneToMany(mappedBy="messageid",cascade = {CascadeType.ALL}, fetch=FetchType.LAZY)
 	@XmlElement(name="Part")
 	public List<MessagePart> getParts() {
 		return parts;
