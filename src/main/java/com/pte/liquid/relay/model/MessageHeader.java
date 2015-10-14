@@ -88,7 +88,6 @@ public class MessageHeader {
 		this.id = id;
 	}
 		
-	@Column(name = "messageid")
 	@XmlAttribute(name="messageid", required=true)
 	public String getMessageid() {
 		return messageid;

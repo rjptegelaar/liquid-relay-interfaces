@@ -19,6 +19,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -47,6 +48,10 @@ public class Message {
 	}
 	
 	@Expose
+	@SerializedName("NumberOfTimesCrawled")
+	private long numberOfTimesCrawled = 0;
+	
+	@Expose
 	@SerializedName("Location")
 	private String location;
 	
@@ -64,8 +69,7 @@ public class Message {
 	
 	@Expose
 	@SerializedName("CorrelationID")
-	private String correlationID;
-	
+	private String correlationID;	
 	
 	@Expose
 	@SerializedName("SnapshotTime")
@@ -89,10 +93,24 @@ public class Message {
 	public String getLocation() {
 		return location;
 	}
+		
 
 	public void setLocation(String location) {
 		this.location = location;
 	}
+	
+	
+	@Column(name = "nrcrawled")
+	@XmlElement(name="nrcrawled")
+	public long getNumberOfTimesCrawled() {
+		return numberOfTimesCrawled;
+	}
+
+
+	public void setNumberOfTimesCrawled(long numberOfTimesCrawled) {
+		this.numberOfTimesCrawled = numberOfTimesCrawled;
+	}
+
 
 	@Id
 	@Column(name = "messageid")
@@ -118,14 +136,14 @@ public class Message {
 		this.snapshotTime = snapshotTime;
 	}
 
-	@OneToMany(mappedBy="messageid")
+	@OneToMany(mappedBy="messageid",cascade = {CascadeType.ALL})
 	@XmlElementWrapper(name="Headers")
 	@XmlElement(name="Header")
 	public List<MessageHeader> getHeaders() {
 		return headers;
 	}
 	
-	@OneToMany(mappedBy="messageid")
+	@OneToMany(mappedBy="messageid",cascade = {CascadeType.ALL})
 	@XmlElement(name="Part")
 	public List<MessagePart> getParts() {
 		return parts;
