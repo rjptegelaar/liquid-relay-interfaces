@@ -49,6 +49,10 @@ public class Message {
 	}
 	
 	@Expose
+	@SerializedName("FlowKey")
+	private String flowkey;
+	
+	@Expose
 	@SerializedName("NumberOfTimesCrawled")
 	private long numberOfTimesCrawled = 0;
 	
@@ -110,6 +114,19 @@ public class Message {
 
 	public void setNumberOfTimesCrawled(long numberOfTimesCrawled) {
 		this.numberOfTimesCrawled = numberOfTimesCrawled;
+	}
+	
+	
+
+	@Column(name = "flowkey")
+	@XmlElement(name="flowkey")
+	public String getFlowkey() {
+		return flowkey;
+	}
+
+
+	public void setFlowkey(String flowkey) {
+		this.flowkey = flowkey;
 	}
 
 
