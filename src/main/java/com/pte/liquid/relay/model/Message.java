@@ -91,7 +91,7 @@ public class Message {
 		
 	@Expose
 	@SerializedName("Part")
-	private List<MessagePart> parts;		
+	private List<MessagePart> parts = new ArrayList<MessagePart>();		
 	
 	@Column(name = "location")
 	@XmlElement(name="Location")
@@ -177,10 +177,7 @@ public class Message {
 	
 	public void createPart(String label, String content){
 		MessagePart part = new MessagePart(label, content, this.id);
-		part.setMessagePartIndex(getNumberOfParts());
-		if(parts==null){
-			parts = new ArrayList<MessagePart>();
-		}		
+		part.setMessagePartIndex(getNumberOfParts());	
 		parts.add(part);
 	}
 	
