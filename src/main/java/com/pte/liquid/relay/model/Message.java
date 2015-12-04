@@ -131,7 +131,7 @@ public class Message {
 
 
 	@Id
-	@Column(name = "messageid")
+	@Column(name = "id")
 	@XmlElement(name="ID")
 	public String getId() {
 		return id;

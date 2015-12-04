@@ -19,6 +19,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
@@ -73,7 +74,8 @@ public class MessagePart {
 		this.messagePartLabel = messagePartLabel;
 	}
 
-	@Column(name = "content")
+	@Column(name = "content")	
+	@Lob 
 	@XmlElement(name="Content")
 	public String getMessagePartContent() {
 		return messagePartContent;
@@ -83,7 +85,7 @@ public class MessagePart {
 		this.messagePartContent = messagePartContent;
 	}
 
-	@Column(name = "index")
+	@Column(name = "partindex")
 	@XmlAttribute(name="Index", required=true)
 	public int getMessagePartIndex() {
 		return messagePartIndex;

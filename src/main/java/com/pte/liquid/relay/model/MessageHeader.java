@@ -42,21 +42,22 @@ public class MessageHeader {
 	}		
 	private long id;
 	
-	@Column(name = "messageid")
+	
 	@Expose
 	@SerializedName("messageid")
 	private String messageid;
 	
-	@Column(name = "key")
+	
 	@Expose
 	@SerializedName("key")
 	private String messageHeaderKey;
 	
-	@Column(name = "value")
+	
 	@Expose
 	@SerializedName("value")
 	private String messageHeaderValue;
 		
+	@Column(name = "headerkey")	
 	@XmlAttribute(name="key", required=true)
 	public String getMessageHeaderKey() {
 		return messageHeaderKey;
@@ -65,7 +66,9 @@ public class MessageHeader {
 	public void setMessageHeaderKey(String messageHeaderKey) {
 		this.messageHeaderKey = messageHeaderKey;
 	}
+
 	
+	@Column(name = "headervalue")
 	@XmlAttribute(name="value", required=false)
 	public String getMessageHeaderValue() {
 		return messageHeaderValue;
@@ -87,6 +90,7 @@ public class MessageHeader {
 		this.id = id;
 	}
 		
+	@Column(name = "messageid")
 	@XmlAttribute(name="messageid", required=true)
 	public String getMessageid() {
 		return messageid;
