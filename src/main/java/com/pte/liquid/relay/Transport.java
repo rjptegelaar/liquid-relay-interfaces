@@ -23,5 +23,6 @@ public interface Transport {
 	public void send(Message msg) throws RelayException;
 	public void setMarshaller(Marshaller marshaller);
 	public void setProperties(Properties properties);
+	public void destroy();
 	
 }
