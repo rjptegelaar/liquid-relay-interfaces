@@ -32,18 +32,48 @@ public class TestMessage {
 	private Marshaller marshaller;
 	
 	@Autowired
-	private GsonBuilder gsonBuilder;
+	private GsonBuilder gsonBuilder = new GsonBuilder();
 	
 	private static Logger logger = Logger.getLogger(TestMessage.class);
 	
 	private Message message;
+	
+	public static void main(String[] args){
+		Message message = new Message();
+		message.setId(UUID.randomUUID().toString());
+		message.setSnapshotTime(new Date());
+		message.setLocation("niveau1||niveau2||niveau3");		
+		message.setHeader("test", "testvalue");
+		message.setHeader("test1", "");
+		message.setHeader("", "test");
+		message.setHeader(null, "test");
+		message.setHeader("hallo", null);
+
+		message.createPart(null, null);
+		message.createPart(null, "hallo");
+		message.createPart("test", null);
+		message.createPart("test", "hallo");
+		GsonBuilder gsonBuilder = new GsonBuilder();
+		 gsonBuilder.excludeFieldsWithoutExposeAnnotation();
+		Gson gson = gsonBuilder.create();
+		String jsonMessage1 = gson.toJson(message);
+		logger.info(jsonMessage1);
+		assert(jsonMessage1!=null);		
+		Message newMessage = gson.fromJson(jsonMessage1, Message.class);
+		logger.info(newMessage);
+		assert(newMessage!=null);
+		String jsonMessage2 = gson.toJson(newMessage);
+		logger.info(jsonMessage2);
+		assert(jsonMessage2!=null);
+		Assert.assertEquals(jsonMessage1, jsonMessage2);
+	}
 	
 	@Before
 	public void init(){
 		message = new Message();
 		message.setId(UUID.randomUUID().toString());
 		message.setSnapshotTime(new Date());
-		message.setLocation("niveau1|||niveau2|||niveau3");		
+		message.setLocation("niveau1||niveau2||niveau3");		
 		message.setHeader("test", "testvalue");
 		message.setHeader("test1", "");
 		message.setHeader("", "test");

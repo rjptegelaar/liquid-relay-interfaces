@@ -60,6 +60,7 @@ public class Message {
 	@SerializedName("Location")
 	private String location;
 	
+	
 	@Expose
 	@SerializedName("ID")
 	private String id;	
@@ -92,6 +93,7 @@ public class Message {
 	@Expose
 	@SerializedName("Part")
 	private List<MessagePart> parts = new ArrayList<MessagePart>();		
+	
 	
 	@Column(name = "location")
 	@XmlElement(name="Location")
