@@ -1,4 +1,4 @@
-//Copyright 2014 Paul Tegelaar
+//Copyright 2015 Paul Tegelaar
 
 //
 //Licensed under the Apache License, Version 2.0 (the "License");
@@ -59,7 +59,6 @@ public class Message {
 	@Expose
 	@SerializedName("Location")
 	private String location;
-	
 	
 	@Expose
 	@SerializedName("ID")
