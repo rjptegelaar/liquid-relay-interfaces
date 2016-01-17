@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.pte.liquid.relay</groupId>
 	<artifactId>RelayInterfaces</artifactId>
@@ -151,4 +152,25 @@
 			<url>${snapshots-url}</url>
 		</snapshotRepository>
 	</distributionManagement>
+	<issueManagement>
+		<url>https://github.com/rjptegelaar/liquid-relay-interfaces/issues</url>
+	</issueManagement>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<url>https://github.com/rjptegelaar/liquid-relay-interfaces</url>
+
+	<repositories>
+		<repository>
+			<id>bintray</id>
+			<url>http://dl.bintray.com/paultegelaar/maven</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
 </project>
