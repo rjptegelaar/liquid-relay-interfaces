@@ -161,16 +161,4 @@
 
 	<url>https://github.com/rjptegelaar/liquid-relay-interfaces</url>
 
-	<repositories>
-		<repository>
-			<id>bintray</id>
-			<url>http://dl.bintray.com/paultegelaar/maven</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</repository>
-	</repositories>
 </project>
