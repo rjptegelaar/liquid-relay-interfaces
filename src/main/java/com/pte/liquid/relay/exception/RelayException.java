@@ -14,6 +14,11 @@
 package com.pte.liquid.relay.exception;
 
 public class RelayException extends Exception{
+	/**
+	 * Generated Serial
+	 */
+	private static final long serialVersionUID = -6441736054790110467L;
+
 	public RelayException(String message){
 		super(message);
 	}
