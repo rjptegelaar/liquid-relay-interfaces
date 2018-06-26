@@ -86,6 +86,10 @@ public class Message {
 	
 	
 	@Expose
+	@SerializedName("TTL")
+	private long ttl;
+	
+	@Expose
 	@SerializedName("Header")
 	private List<MessageHeader> headers = new ArrayList<MessageHeader>();
 		
@@ -106,6 +110,20 @@ public class Message {
 	}
 	
 	
+	
+	
+	@Column(name = "ttl")
+	@XmlElement(name="TTL")
+	public long getTtl() {
+		return ttl;
+	}
+
+
+	public void setTtl(long ttl) {
+		this.ttl = ttl;
+	}
+
+
 	@Column(name = "nrcrawled")
 	@XmlElement(name="nrcrawled")
 	public long getNumberOfTimesCrawled() {
