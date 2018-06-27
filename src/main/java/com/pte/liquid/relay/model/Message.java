@@ -87,7 +87,11 @@ public class Message {
 	
 	@Expose
 	@SerializedName("TTL")
-	private long ttl;
+	private Date ttl;
+	
+	@Expose
+	@SerializedName("TTLMillis")
+	private long ttlMillis;
 	
 	@Expose
 	@SerializedName("Header")
@@ -112,16 +116,23 @@ public class Message {
 	
 	
 	
+	
 	@Column(name = "ttl")
+    @Temporal(TemporalType.TIMESTAMP)
 	@XmlElement(name="TTL")
-	public long getTtl() {
+	@XmlSchemaType(name="date")
+	@XmlJavaTypeAdapter(DateAdapter.class)
+	public Date getTtl() {
 		return ttl;
 	}
 
 
-	public void setTtl(long ttl) {
+	public void setTtl(Date ttl) {
 		this.ttl = ttl;
 	}
+	
+	
+	
 
 
 	@Column(name = "nrcrawled")
@@ -352,6 +363,18 @@ public class Message {
 
 	public void setSnapshotTimeMillis(long snapshotTimeMillis) {
 		this.snapshotTimeMillis = snapshotTimeMillis;
+	}
+
+
+	@Column(name = "ttlmillis")
+	@XmlElement(name="TTLMillis")
+	public long getTtlMillis() {
+		return ttlMillis;
+	}
+
+
+	public void setTtlMillis(long ttlMillis) {
+		this.ttlMillis = ttlMillis;
 	}
 	
 	
